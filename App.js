@@ -10,13 +10,19 @@ import {
   Button, 
 } from 'react-native';
 import * as Font from 'expo-font';
+import { useFonts } from 'expo-font';
+import { AppLoading } from 'expo';
 
 const loadFonts = async () => {
-  await Font.loadAsync({
-    // "Roboto-Regulat": require("./assets/fonts/Roboto/Roboto-Regular.ttf"),
-    "Roboto-Bold": require("./assets/fonts/Roboto/Roboto-Bold.ttf"),
+  await Font.useFonts({
+    "Roboto-Regular": require("./assets/fonts/Roboto-Regular.ttf"),
+    "Roboto-Bold": require("./assets/fonts/Roboto-Bold.ttf"),
   });
 };
+
+// const [loadAsync] = useFonts{(
+
+// )} 
 
 export default function App() {
   // const [value, setValue] = useState("");
@@ -49,7 +55,10 @@ export default function App() {
   // чтобы наши шрифты загрузились до момента появления приложения на экране
   const [isReady, setIsReady] = useState(false) 
   if (!isReady) {
-    return <AppLoading startAsync={loadFonts} onFinish={() => setIsReady(true)}/>
+    return <AppLoading
+      startAsync={loadFonts}
+      onFinish={() => setIsReady(true)}
+      onError={console.warn} />
   };
 
   return (
