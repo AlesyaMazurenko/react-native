@@ -25,7 +25,7 @@ const initialState = {
 
 SplashScreen.preventAutoHideAsync();
 
-export default function RegistrationScr() {
+export default function RegistrationScr({navigation}) {
 
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   const [state, setState] = useState(initialState);
@@ -49,7 +49,7 @@ export default function RegistrationScr() {
     // }
   },[])
 
-  console.log('platform', Platform.OS);
+  // console.log('platform', Platform.OS);
 
   const loadFonts = async () => {
     await FontFace.loadAsync({
@@ -163,8 +163,8 @@ export default function RegistrationScr() {
                     </Text>
                   </TouchableOpacity>
                   <TouchableOpacity activeOpacity={0.7} style={styles.btnLink} onPress={() => setIsShowKeyboard(false)}>
-                    <Text style={styles.btnLinkText}>
-                      Вже є аккаунт? Увійти</Text>
+                    <Text onPress={() => navigation.navigate('Login')} style={styles.btnLinkText}>
+                        Вже є аккаунт? Увійти</Text>
                     </TouchableOpacity>
                   </View>
 
